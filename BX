@@ -1,1 +1,309 @@
-SBX
+local ScreenGui = Instance.new("ScreenGui")
+local ToggleButton = Instance.new("TextButton")
+
+ScreenGui.Parent = game.CoreGui
+
+ToggleButton.Parent = ScreenGui
+ToggleButton.BackgroundColor3 = Color3.new(0, 0, 0)
+ToggleButton.Size = UDim2.new(0, 50, 0, 50) -- Cube dimensions
+ToggleButton.Text = "button"
+
+local dragging = false
+local dragInput
+local dragStart
+local startPos
+
+local function update(input)
+    local delta = input.Position - dragStart
+    ToggleButton.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+end
+
+ToggleButton.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = ToggleButton.Position
+
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+ToggleButton.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+    end
+end)
+
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if dragging and input == dragInput then
+        update(input)
+    end
+end)
+
+-- Simulate "K" key press on click
+ToggleButton.MouseButton1Click:Connect(function()
+    local VirtualInputManager = game:GetService("VirtualInputManager")
+    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.K, false, game)
+    wait(0.1)
+    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.K, false, game)
+end)
+
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+    Name = "BLUE [NEW] V1",
+    LoadingTitle = "SKYBLUEX",
+    LoadingSubtitle = "By your brother",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = nil,
+        FileName = "Big Hub"
+    },
+    Discord = {
+        Enabled = false,
+        Invite = "noinvitelink",
+        RememberJoins = true
+    },
+    KeySystem = false,
+    KeySettings = {
+        Title = "Untitled",
+        Subtitle = "Key System",
+        Note = "No method of obtaining the key is provided",
+        FileName = "Key",
+        SaveKey = true,
+        GrabKeyFromSite = false,
+        Key = {"Hello"}
+    }
+})
+
+-- Tabs
+
+local BlueTab = Window:CreateTab("🐧", 4483362458) -- Title, Image
+
+local RoxTab = Window:CreateTab("⛄", 4483362458) -- Title, Image
+
+local RexTab = Window:CreateTab("🧙‍♂️", 4483362458) -- Title, Image
+
+
+
+-- Buttons
+--Blue
+
+local Button = BlueTab:CreateButton({
+   Name = "Fly",
+   Callback = function(Value)
+   loadstring(game:HttpGet('https://pastebin.com/raw/YSL3xKYU'))()
+   end,
+})
+
+local Button = BlueTab:CreateButton({
+   Name = "Fly [ADMIN]",
+   Callback = function(Value)
+   loadstring(game:HttpGet(('https://pastebin.com/raw/YvKv4AuY'),true))();
+   end,
+})
+
+local Button = BlueTab:CreateButton({
+   Name = "Fly [ADMIN]",
+   Callback = function(Value)
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
+
+local Button = BlueTab:CreateButton({
+   Name = "Fling speed 🥏",
+   Callback = function(Value)
+   loadstring(game:HttpGet('https://pastebin.com/raw/r97d7dS0', true))()
+   end,
+})
+
+-- Rox
+
+local Button = RoxTab:CreateButton({
+   Name = "✅",
+   Callback = function(Value)
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
+
+local Button = RoxTab:CreateButton({
+   Name = "✈️",
+   Callback = function(Value)
+   loadstring(game:HttpGet('https://pastebin.com/raw/YSL3xKYU'))()
+   end,
+})
+
+local Button = RoxTab:CreateButton({
+   Name = "✈️ 2",
+   Callback = function(Value)
+   loadstring(game:HttpGet(('https://pastebin.com/raw/YvKv4AuY'),true))();
+   end,
+})
+
+local Button = RoxTab:CreateButton({
+   Name = "🟩",
+   Callback = function(Value)
+   loadstring(game:HttpGet"https://raw.githubusercontent.com/Basicallyy/Basicallyy/main/MinGamingV4.lua")()
+   end,
+})
+
+local Button = RoxTab:CreateButton({
+   Name = "⬜",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://pastebin.com/raw/TjjnpCM1"))()
+   end,
+})
+
+local Button = RoxTab:CreateButton({
+   Name = "🔴",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()
+   end,
+})
+
+local Button = RoxTab:CreateButton({
+   Name = "🐎🐎🐎",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/DHBCommunity/DHBOfficialScript/main/westyourballz"))()
+   end,
+})
+
+local Button = RoxTab:CreateButton({
+   Name = "💃💃💃 ",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://pastebin.com/raw/eCpipCTH"))()
+   end,
+})
+
+local Button = RoxTab:CreateButton({
+   Name = "mm2👁️",
+   Callback = function(Value)
+   loadstring(game:HttpGet(('https://pastebin.com/raw/CMN1fPhw'),true))()
+   end,
+})
+
+local Button = RoxTab:CreateButton({
+   Name = "🏡🏡🏡",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/RFR-R1CH4RD/Loader/main/Salvatore.lua"))()
+   end,
+})
+
+local Button = RoxTab:CreateButton({
+   Name = "🕷️🕷️🕷️",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/0Ben1/fe/main/obf_E872F3ky4888TSVdj6Adgi1hSLtM038AyxVpTVw07QA3QUDcI3sxmuD869hYR4id.lua.txt"))()
+   end,
+})
+
+local Button = RoxTab:CreateButton({
+   Name = "🧍🧍🧍",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://scriptblox.com/raw/FE-Animation-Changer_217"))()
+   end,
+})
+
+-- Rex Tab
+
+local Button = RexTab:CreateButton({
+   Name = "✅",
+   Callback = function(Value)
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
+
+local Button = RexTab:CreateButton({
+   Name = "✈️",
+   Callback = function(Value)
+   loadstring(game:HttpGet('https://pastebin.com/raw/YSL3xKYU'))()
+   end,
+})
+
+local Button = RexTab:CreateButton({
+   Name = "✈️ 2",
+   Callback = function(Value)
+   loadstring(game:HttpGet(('https://pastebin.com/raw/YvKv4AuY'),true))();
+   end,
+})
+
+local Button = RexTab:CreateButton({
+   Name = "🟩",
+   Callback = function(Value)
+   loadstring(game:HttpGet"https://raw.githubusercontent.com/Basicallyy/Basicallyy/main/MinGamingV4.lua")()
+   end,
+})
+
+local Button = RexTab:CreateButton({
+   Name = "⬜",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://pastebin.com/raw/TjjnpCM1"))()
+   end,
+})
+
+local Button = RexTab:CreateButton({
+   Name = "🔴",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()
+   end,
+})
+
+local Button = RexTab:CreateButton({
+   Name = "🐎🐎🐎",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/DHBCommunity/DHBOfficialScript/main/westyourballz"))()
+   end,
+})
+
+local Button = RexTab:CreateButton({
+   Name = "💃💃💃 ",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://pastebin.com/raw/eCpipCTH"))()
+   end,
+})
+
+local Button = RexTab:CreateButton({
+   Name = "mm2👁️",
+   Callback = function(Value)
+   loadstring(game:HttpGet(('https://pastebin.com/raw/CMN1fPhw'),true))()
+   end,
+})
+
+local Button = RexTab:CreateButton({
+   Name = "🏡🏡🏡",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/RFR-R1CH4RD/Loader/main/Salvatore.lua"))()
+   end,
+})
+
+local Button = RexTab:CreateButton({
+   Name = "🕷️🕷️🕷️",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/0Ben1/fe/main/obf_E872F3ky4888TSVdj6Adgi1hSLtM038AyxVpTVw07QA3QUDcI3sxmuD869hYR4id.lua.txt"))()
+   end,
+})
+
+local Button = RexTab:CreateButton({
+   Name = "🧍🧍🧍",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://scriptblox.com/raw/FE-Animation-Changer_217"))()
+   end,
+})
+
+
+-- key
+
+local Keybind = BlueTab:CreateKeybind({
+   Name = "Keybind Example",
+   CurrentKeybind = "K", -- Changed to K
+   HoldToInteract = false,
+   Flag = "Keybind1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Keybind)
+   -- The function that takes place when the keybind is pressed
+   -- The variable (Keybind) is a boolean for whether the keybind is being held or not (HoldToInteract needs to be true)
+   end,
+})
