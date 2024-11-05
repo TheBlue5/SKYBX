@@ -52,6 +52,7 @@ ToggleButton.MouseButton1Click:Connect(function()
     VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.K, false, game)
 end)
 
+-- Rayfield
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
@@ -93,6 +94,13 @@ local RexTab = Window:CreateTab("🧙‍♂️", 4483362458) -- Title, Image
 
 -- Buttons
 --Blue
+
+local Button = BlueTab:CreateButton({
+   Name = "IY",
+   Callback = function(Value)
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
 
 local Button = BlueTab:CreateButton({
    Name = "Fly",
