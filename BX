@@ -93,7 +93,7 @@ local RexTab = Window:CreateTab("🧙‍♂️", 4483362458) -- Title, Image
 
 
 -- Buttons
---Blue
+-- Blue
 
 local Button = BlueTab:CreateButton({
    Name = "IY",
@@ -117,9 +117,9 @@ local Button = BlueTab:CreateButton({
 })
 
 local Button = BlueTab:CreateButton({
-   Name = "Fly [ADMIN]",
+   Name = "Vfly V4",
    Callback = function(Value)
-   loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   loadstring(game:HttpGet(('https://pastebin.com/raw/ZgKQ0TEA'),true))()
    end,
 })
 
@@ -150,6 +150,13 @@ local Button = RoxTab:CreateButton({
    Name = "✈️ 2",
    Callback = function(Value)
    loadstring(game:HttpGet(('https://pastebin.com/raw/YvKv4AuY'),true))();
+   end,
+})
+
+local Button = RoxTab:CreateButton({
+   Name = "✈️ 3",
+   Callback = function(Value)
+   loadstring(game:HttpGet(('https://pastebin.com/raw/ZgKQ0TEA'),true))()
    end,
 })
 
