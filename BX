@@ -117,6 +117,13 @@ local Button = BlueTab:CreateButton({
 })
 
 local Button = BlueTab:CreateButton({
+   Name = "rochips universal",
+   Callback = function(Value)
+   loadstring(game:HttpGet(('https://raw.githubusercontent.com/randomstring0/Qwerty/main/qwerty4'),true))();
+   end,
+})
+
+local Button = BlueTab:CreateButton({
    Name = "Fly Gui V4",
    Callback = function(Value)
    loadstring(game:HttpGet("https://raw.githubusercontent.com/TheBlue5/Fly-Gui-V4/refs/heads/main/FGV4"))();
@@ -178,6 +185,13 @@ local Button = RoxTab:CreateButton({
    Name = "✈️🚗",
    Callback = function(Value)
    loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Vehicle%20Fly%20Gui'))()
+   end,
+})
+
+local Button = RoxTab:CreateButton({
+   Name = "💃",
+   Callback = function(Value)
+   loadstring(game:HttpGet(('https://raw.githubusercontent.com/randomstring0/Qwerty/main/qwerty4'),true))();
    end,
 })
 
@@ -264,6 +278,13 @@ local Button = RexTab:CreateButton({
    Name = "✈️ 2",
    Callback = function(Value)
    loadstring(game:HttpGet(('https://pastebin.com/raw/YvKv4AuY'),true))();
+   end,
+})
+
+local Button = RexTab:CreateButton({
+   Name = "💃",
+   Callback = function(Value)
+   loadstring(game:HttpGet(('https://raw.githubusercontent.com/randomstring0/Qwerty/main/qwerty4'),true))();
    end,
 })
 
