@@ -163,7 +163,7 @@ local Button = RoxTab:CreateButton({
 local Button = RoxTab:CreateButton({
    Name = "✈️",
    Callback = function(Value)
-   https://rawscripts.net/raw/Universal-Script-Fly-script-v3-16742
+   loadstring(game:HttpGet("https://pastebin.com/raw/ZxLiHtYN"))()
    end,
 })
 
@@ -277,7 +277,7 @@ local Button = RexTab:CreateButton({
 local Button = RexTab:CreateButton({
    Name = "✈️",
    Callback = function(Value)
-   loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Fly-script-v3-16742"))()
+   loadstring(game:HttpGet("https://pastebin.com/raw/ZxLiHtYN"))()
    end,
 })
 
