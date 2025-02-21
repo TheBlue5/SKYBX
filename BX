@@ -1,5 +1,7 @@
 local ScreenGui = Instance.new("ScreenGui")
 local ToggleButton = Instance.new("TextButton")
+local UserInputService = game:GetService("UserInputService")
+local VirtualInputManager = game:GetService("VirtualInputManager")
 
 ScreenGui.Parent = game.CoreGui
 
@@ -12,12 +14,19 @@ ToggleButton.Text = "🐧"
 ToggleButton.Font = Enum.Font.SourceSans
 ToggleButton.TextSize = 24
 ToggleButton.TextColor3 = Color3.new(0, 0, 0)
-ToggleButton.Position = UDim2.new(0.5, -25, 0.5, -25)
+ToggleButton.Active = true      -- Ensure it accepts input
+ToggleButton.Selectable = true  -- Allow focus for touch input
 ToggleButton.ClipsDescendants = true
 
+-- Set the AnchorPoint so that scaling animations are centered
+ToggleButton.AnchorPoint = Vector2.new(0.5, 0.5)
+-- Set initial position near the left edge (30 pixels from left) and vertically centered.
+local initialPosition = UDim2.new(0, 30, 0.5, 0)
+ToggleButton.Position = initialPosition
+
 -- Make it a circle
-ToggleButton.UICorner = Instance.new("UICorner", ToggleButton)
-ToggleButton.UICorner.CornerRadius = UDim.new(1, 0)
+local uiCorner = Instance.new("UICorner", ToggleButton)
+uiCorner.CornerRadius = UDim.new(1, 0)
 
 local dragging = false
 local dragInput
@@ -34,7 +43,7 @@ ToggleButton.InputBegan:Connect(function(input)
         dragging = true
         dragStart = input.Position
         startPos = ToggleButton.Position
-        
+
         input.Changed:Connect(function()
             if input.UserInputState == Enum.UserInputState.End then
                 dragging = false
@@ -49,45 +58,48 @@ ToggleButton.InputChanged:Connect(function(input)
     end
 end)
 
-game:GetService("UserInputService").InputChanged:Connect(function(input)
+UserInputService.InputChanged:Connect(function(input)
     if dragging and input == dragInput then
         update(input)
     end
 end)
 
--- Function to shrink and disappear
+-- Function to shrink and disappear (with center fixed at initialPosition)
 local function shrinkAndDisappear()
     for i = 1, 10 do
-        ToggleButton.Size = UDim2.new(0, 50 - (i * 5), 0, 50 - (i * 5))
-        ToggleButton.Position = UDim2.new(0.5, -((50 - (i * 5)) / 2), 0.5, -((50 - (i * 5)) / 2))
+        local newSize = 50 - (i * 5)
+        ToggleButton.Size = UDim2.new(0, newSize, 0, newSize)
+        ToggleButton.Position = initialPosition
         wait(0.05)
     end
     ToggleButton.Visible = false
 end
 
--- Function to grow and appear
+-- Function to grow and appear (with center fixed at initialPosition)
 local function growAndAppear()
     ToggleButton.Visible = true
     for i = 10, 1, -1 do
-        ToggleButton.Size = UDim2.new(0, 50 - (i * 5), 0, 50 - (i * 5))
-        ToggleButton.Position = UDim2.new(0.5, -((50 - (i * 5)) / 2), 0.5, -((50 - (i * 5)) / 2))
+        local newSize = 50 - (i * 5)
+        ToggleButton.Size = UDim2.new(0, newSize, 0, newSize)
+        ToggleButton.Position = initialPosition
         wait(0.05)
     end
     ToggleButton.Size = UDim2.new(0, 50, 0, 50)
-    ToggleButton.Position = UDim2.new(0.5, -25, 0.5, -25)
+    ToggleButton.Position = initialPosition
 end
 
--- Simulate "K" key press on click
 ToggleButton.MouseButton1Click:Connect(function()
-    local VirtualInputManager = game:GetService("VirtualInputManager")
-    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.K, false, game)
-    wait(0.1)
-    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.K, false, game)
+    -- On mobile, skip the key press simulation since devices don't have keyboards
+    if not UserInputService.TouchEnabled then
+        VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.K, false, game)
+        wait(0.1)
+        VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.K, false, game)
+    end
     shrinkAndDisappear()
 end)
 
 -- Simulate UI close button reappearing the toggle button
--- You need to replace `CloseButton` with the actual UI close button instance
+-- Replace `CloseButton` with your actual UI close button instance as needed.
 local CloseButton = Instance.new("TextButton", ScreenGui) -- Example placeholder
 CloseButton.Text = "Close UI"
 CloseButton.Size = UDim2.new(0, 100, 0, 30)
