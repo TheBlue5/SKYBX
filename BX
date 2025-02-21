@@ -4,9 +4,20 @@ local ToggleButton = Instance.new("TextButton")
 ScreenGui.Parent = game.CoreGui
 
 ToggleButton.Parent = ScreenGui
-ToggleButton.BackgroundColor3 = Color3.new(0, 0, 0)
-ToggleButton.Size = UDim2.new(0, 50, 0, 50) -- Cube dimensions
-ToggleButton.Text = "button"
+ToggleButton.BackgroundColor3 = Color3.new(1, 1, 1) -- White background
+ToggleButton.BorderSizePixel = 2 -- Black border
+ToggleButton.BorderColor3 = Color3.new(0, 0, 0) -- Black edges
+ToggleButton.Size = UDim2.new(0, 50, 0, 50) -- Circle dimensions
+ToggleButton.Text = "🐧"
+ToggleButton.Font = Enum.Font.SourceSans
+ToggleButton.TextSize = 24
+ToggleButton.TextColor3 = Color3.new(0, 0, 0)
+ToggleButton.Position = UDim2.new(0.5, -25, 0.5, -25)
+ToggleButton.ClipsDescendants = true
+
+-- Make it a circle
+ToggleButton.UICorner = Instance.new("UICorner", ToggleButton)
+ToggleButton.UICorner.CornerRadius = UDim.new(1, 0)
 
 local dragging = false
 local dragInput
@@ -23,7 +34,7 @@ ToggleButton.InputBegan:Connect(function(input)
         dragging = true
         dragStart = input.Position
         startPos = ToggleButton.Position
-
+        
         input.Changed:Connect(function()
             if input.UserInputState == Enum.UserInputState.End then
                 dragging = false
@@ -44,12 +55,48 @@ game:GetService("UserInputService").InputChanged:Connect(function(input)
     end
 end)
 
+-- Function to shrink and disappear
+local function shrinkAndDisappear()
+    for i = 1, 10 do
+        ToggleButton.Size = UDim2.new(0, 50 - (i * 5), 0, 50 - (i * 5))
+        ToggleButton.Position = UDim2.new(0.5, -((50 - (i * 5)) / 2), 0.5, -((50 - (i * 5)) / 2))
+        wait(0.05)
+    end
+    ToggleButton.Visible = false
+end
+
+-- Function to grow and appear
+local function growAndAppear()
+    ToggleButton.Visible = true
+    for i = 10, 1, -1 do
+        ToggleButton.Size = UDim2.new(0, 50 - (i * 5), 0, 50 - (i * 5))
+        ToggleButton.Position = UDim2.new(0.5, -((50 - (i * 5)) / 2), 0.5, -((50 - (i * 5)) / 2))
+        wait(0.05)
+    end
+    ToggleButton.Size = UDim2.new(0, 50, 0, 50)
+    ToggleButton.Position = UDim2.new(0.5, -25, 0.5, -25)
+end
+
 -- Simulate "K" key press on click
 ToggleButton.MouseButton1Click:Connect(function()
     local VirtualInputManager = game:GetService("VirtualInputManager")
     VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.K, false, game)
     wait(0.1)
     VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.K, false, game)
+    shrinkAndDisappear()
+end)
+
+-- Simulate UI close button reappearing the toggle button
+-- You need to replace `CloseButton` with the actual UI close button instance
+local CloseButton = Instance.new("TextButton", ScreenGui) -- Example placeholder
+CloseButton.Text = "Close UI"
+CloseButton.Size = UDim2.new(0, 100, 0, 30)
+CloseButton.Position = UDim2.new(0.5, -50, 0.8, 0)
+CloseButton.BackgroundColor3 = Color3.new(1, 0, 0)
+CloseButton.TextColor3 = Color3.new(1, 1, 1)
+
+CloseButton.MouseButton1Click:Connect(function()
+    growAndAppear()
 end)
 
 -- Rayfield
