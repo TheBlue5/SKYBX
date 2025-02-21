@@ -138,6 +138,13 @@ local Button = BlueTab:CreateButton({
 })
 
 local Button = BlueTab:CreateButton({
+   Name = "Vfly XX",
+   Callback = function(Value)
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/ScpGuest666/Custom-stuff/refs/heads/main/Vehicle%20Fly%20script%20testing'))()
+   end,
+})
+
+local Button = BlueTab:CreateButton({
    Name = "Vfly V4",
    Callback = function(Value)
    loadstring(game:HttpGet(('https://pastebin.com/raw/ZgKQ0TEA'),true))()
@@ -265,6 +272,13 @@ local Button = RoxTab:CreateButton({
    end,
 })
 
+local Button = RoxTab:CreateButton({
+   Name = "🔨🔨🔨",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/Drifty96/ftfgui/main/ftfgui", true))()
+   end,
+})
+
 -- Rex Tab
 
 local Button = RexTab:CreateButton({
@@ -358,6 +372,12 @@ local Button = RexTab:CreateButton({
    end,
 })
 
+local Button = RexTab:CreateButton({
+   Name = "🔨🔨🔨",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/Drifty96/ftfgui/main/ftfgui", true))()
+   end,
+})
 
 -- key
 
