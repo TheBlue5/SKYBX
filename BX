@@ -1,171 +1,57 @@
---// LOCAL SCRIPT: Toggle UI Button
--- Place this in StarterPlayerScripts or a LocalScript in StarterGui.
+local ScreenGui = Instance.new("ScreenGui")
+local ToggleButton = Instance.new("TextButton")
 
-local Players = game:GetService("Players")
-local UserInputService = game:GetService("UserInputService")
-local VirtualInputManager = game:GetService("VirtualInputManager")
+ScreenGui.Parent = game.CoreGui
 
-local player = Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
+ToggleButton.Parent = ScreenGui
+ToggleButton.BackgroundColor3 = Color3.new(0, 0, 0)
+ToggleButton.Size = UDim2.new(0, 50, 0, 50) -- Cube dimensions
+ToggleButton.Text = "button"
 
---// CREATE A NEW SCREEN GUI
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "ToggleButtonGui"
-screenGui.Parent = playerGui
-
---// CREATE THE TOGGLE BUTTON
-local toggleButton = Instance.new("TextButton")
-toggleButton.Name = "ToggleUIButton"
-toggleButton.Parent = screenGui
-toggleButton.BackgroundColor3 = Color3.new(1, 1, 1)   -- White background
-toggleButton.BorderSizePixel = 2                     -- Black border
-toggleButton.BorderColor3 = Color3.new(0, 0, 0)      -- Black edges
-toggleButton.Size = UDim2.new(0, 50, 0, 50)          -- Circle dimensions
-toggleButton.Text = "🐧"
-toggleButton.Font = Enum.Font.SourceSans
-toggleButton.TextSize = 24
-toggleButton.TextColor3 = Color3.new(0, 0, 0)
-toggleButton.ClipsDescendants = true
-
--- Position near the left edge (30 px from left, vertically centered).
-toggleButton.AnchorPoint = Vector2.new(0.5, 0.5)
-toggleButton.Position = UDim2.new(0, 30, 0.5, 0)
-
--- Make it a circle
-local uiCorner = Instance.new("UICorner")
-uiCorner.CornerRadius = UDim.new(1, 0)
-uiCorner.Parent = toggleButton
-
---// KEEP TRACK OF THE LAST POSITION AND SIZE
-local lastPosition = toggleButton.Position
-local lastSize = toggleButton.Size
-
---// FUNCTIONS TO SHRINK AND GROW
-local function shrinkAndDisappear()
-    lastPosition = toggleButton.Position
-    lastSize = toggleButton.Size
-
-    local startSizeX = lastSize.X.Offset
-    local startSizeY = lastSize.Y.Offset
-    local steps = 10
-
-    for i = 1, steps do
-        local ratio = 1 - (i / steps)
-        local newX = startSizeX * ratio
-        local newY = startSizeY * ratio
-        toggleButton.Size = UDim2.new(0, newX, 0, newY)
-        toggleButton.Position = lastPosition
-        task.wait(0.05)
-    end
-
-    toggleButton.Visible = false
-end
-
-local function growAndAppear()
-    toggleButton.Visible = true
-    toggleButton.Position = lastPosition
-
-    local finalSizeX = lastSize.X.Offset
-    local finalSizeY = lastSize.Y.Offset
-    local steps = 10
-
-    for i = 1, steps do
-        local ratio = i / steps
-        local newX = finalSizeX * ratio
-        local newY = finalSizeY * ratio
-        toggleButton.Size = UDim2.new(0, newX, 0, newY)
-        toggleButton.Position = lastPosition
-        task.wait(0.05)
-    end
-
-    -- Ensure final size/position match exactly
-    toggleButton.Size = lastSize
-    toggleButton.Position = lastPosition
-end
-
---// DRAGGING & CLICK LOGIC
 local dragging = false
 local dragInput
 local dragStart
 local startPos
 
-local isPressing = false
-local pressPos
-local movedThreshold = 10  -- Pixel distance to detect drag vs. tap
+local function update(input)
+local delta = input.Position - dragStart
+ToggleButton.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+end
 
--- When the user begins pressing:
-toggleButton.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1
-        or input.UserInputType == Enum.UserInputType.Touch then
-        
-        dragging = false
-        isPressing = true
-        pressPos = input.Position
-        dragStart = input.Position
-        startPos = toggleButton.Position
-        
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                dragging = false
-            end
-        end)
-    end
+ToggleButton.InputBegan:Connect(function(input)
+if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+dragging = true
+dragStart = input.Position
+startPos = ToggleButton.Position
+
+input.Changed:Connect(function()  
+        if input.UserInputState == Enum.UserInputState.End then  
+            dragging = false  
+        end  
+    end)  
+end
+
 end)
 
--- When the user moves:
-toggleButton.InputChanged:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseMovement
-        or input.UserInputType == Enum.UserInputType.Touch then
-        
-        dragInput = input
-    end
-    
-    -- Check how far they've moved from the initial press
-    if isPressing and pressPos and input.Position then
-        local distanceMoved = (input.Position - pressPos).magnitude
-        if distanceMoved > movedThreshold then
-            dragging = true
-        end
-    end
+ToggleButton.InputChanged:Connect(function(input)
+if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+dragInput = input
+end
 end)
 
--- Global input changed for dragging
-UserInputService.InputChanged:Connect(function(input)
-    if dragging and input == dragInput then
-        local delta = input.Position - dragStart
-        toggleButton.Position = UDim2.new(
-            startPos.X.Scale,
-            startPos.X.Offset + delta.X,
-            startPos.Y.Scale,
-            startPos.Y.Offset + delta.Y
-        )
-    end
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+if dragging and input == dragInput then
+update(input)
+end
 end)
 
--- When the user ends pressing:
-toggleButton.InputEnded:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1
-        or input.UserInputType == Enum.UserInputType.Touch then
-        
-        isPressing = false
-        
-        -- If we never dragged, treat it as a tap/click
-        if not dragging then
-            -- On non-touch devices, simulate a K key press
-            if not UserInputService.TouchEnabled then
-                VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.K, false, game)
-                task.wait(0.1)
-                VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.K, false, game)
-            end
-            shrinkAndDisappear()
-        end
-    end
+-- Simulate "K" key press on click
+ToggleButton.MouseButton1Click:Connect(function()
+local VirtualInputManager = game:GetService("VirtualInputManager")
+VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.K, false, game)
+wait(0.1)
+VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.K, false, game)
 end)
-
---// HOW TO CLOSE YOUR GUI:
--- In your GUI's own X-button or close button script, just call:
--- growAndAppear()
--- to make this toggle button reappear at the same place the user left it.
 
 
 
