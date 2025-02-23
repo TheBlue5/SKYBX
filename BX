@@ -143,7 +143,7 @@ local Button = BlueTab:CreateButton({
 local Button = BlueTab:CreateButton({
    Name = "Vfly XX",
    Callback = function(Value)
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/TheBlue5/VFLY-XZ/refs/heads/main/VFLY?token=GHSAT0AAAAAAC7LMEKTMMB5H5W45F6CK326Z52AJRQ"))();
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/TheBlue5/VFLY-XZ/refs/heads/main/VFLY"))();
    end,
 })
 
