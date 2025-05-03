@@ -373,7 +373,7 @@ local Button = RexTab:CreateButton({
 
 -- key
 
-local Keybind = BlueTab:CreateKeybind({
+local Keybind = RoxTab:CreateKeybind({
    Name = "Keybind Example",
    CurrentKeybind = "K", -- Changed to K
    HoldToInteract = false,
