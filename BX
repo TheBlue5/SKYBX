@@ -141,20 +141,6 @@ local Button = BlueTab:CreateButton({
 })
 
 local Button = BlueTab:CreateButton({
-   Name = "Vfly XX V2",
-   Callback = function(Value)
-   loadstring(game:HttpGet('https://raw.githubusercontent.com/ScpGuest666/Random-Roblox-script/refs/heads/main/Roblox%20Fe%20Vehicle%20Fly%20GUI%20script'))()
-   end,
-})
-
-local Button = BlueTab:CreateButton({
-   Name = "Vfly old",
-   Callback = function(Value)
-   loadstring(game:HttpGet(('https://raw.githubusercontent.com/TheBlue5/Fe-Vehicle-Fly-GUI-script/refs/heads/main/Vfly),true))();
-   end,
-})
-
-local Button = BlueTab:CreateButton({
    Name = "Vfly XZ",
    Callback = function(Value)
    loadstring(game:HttpGet("https://raw.githubusercontent.com/TheBlue5/VFLY-XZ/refs/heads/main/VFLY"))();
