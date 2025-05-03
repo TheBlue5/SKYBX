@@ -87,8 +87,6 @@ local Window = Rayfield:CreateWindow({
 
 -- Tabs
 
-local BlueTab = Window:CreateTab("🐧", 4483362458) -- Title, Image
-
 local RoxTab = Window:CreateTab("⛄", 4483362458) -- Title, Image
 
 local RexTab = Window:CreateTab("🧙‍♂️", 4483362458) -- Title, Image
@@ -96,15 +94,6 @@ local RexTab = Window:CreateTab("🧙‍♂️", 4483362458) -- Title, Image
 
 
 -- Buttons
--- Blue
-
-local Button = BlueTab:CreateButton({
-   Name = "Fly",
-   Callback = function(Value)
-   loadstring(game:HttpGet("https://pastebin.com/raw/ZxLiHtYN"))()
-   end,
-})
-
 -- Rox
 
 local Button = RoxTab:CreateButton({
