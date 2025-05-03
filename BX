@@ -148,9 +148,9 @@ local Button = BlueTab:CreateButton({
 })
 
 local Button = BlueTab:CreateButton({
-   Name = "Vfly XX V2 (old)",
+   Name = "Vfly XX V2 old",
    Callback = function(Value)
-   loadstring(game:HttpGet('https://raw.githubusercontent.com/TheBlue5/Fe-Vehicle-Fly-GUI-script/refs/heads/main/Vfly'))()
+   loadstring(game:HttpGet(('https://raw.githubusercontent.com/TheBlue5/Fe-Vehicle-Fly-GUI-script/refs/heads/main/Vfly'),true))();
    end,
 })
 
