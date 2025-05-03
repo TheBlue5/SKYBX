@@ -87,6 +87,8 @@ local Window = Rayfield:CreateWindow({
 
 -- Tabs
 
+local BlueTab = Window:CreateTab("🐧", 4483362458) -- Title, Image
+
 local RoxTab = Window:CreateTab("⛄", 4483362458) -- Title, Image
 
 local RexTab = Window:CreateTab("🧙‍♂️", 4483362458) -- Title, Image
@@ -94,6 +96,102 @@ local RexTab = Window:CreateTab("🧙‍♂️", 4483362458) -- Title, Image
 
 
 -- Buttons
+
+-- Blue
+
+local Button = BlueTab:CreateButton({
+   Name = "IY",
+   Callback = function(Value)
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
+
+local Button = BlueTab:CreateButton({
+   Name = "Fly",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://pastebin.com/raw/ZxLiHtYN"))()
+   end,
+})
+
+local Button = BlueTab:CreateButton({
+   Name = "Fly [ADMIN]",
+   Callback = function(Value)
+   loadstring(game:HttpGet(('https://pastebin.com/raw/YvKv4AuY'),true))();
+   end,
+})
+
+local Button = BlueTab:CreateButton({
+   Name = "rochips universal",
+   Callback = function(Value)
+   loadstring(game:HttpGet(('https://raw.githubusercontent.com/randomstring0/Qwerty/main/qwerty4'),true))();
+   end,
+})
+
+local Button = BlueTab:CreateButton({
+   Name = "Fly Gui V4",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/TheBlue5/My-scripts/refs/heads/main/Fly%20Gui%20V4"))();
+   end,
+})
+
+local Button = BlueTab:CreateButton({
+   Name = "Vfly V2",
+   Callback = function(Value)
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Vehicle%20Fly%20Gui'))()
+   end,
+})
+
+local Button = BlueTab:CreateButton({
+   Name = "Vfly XX V2",
+   Callback = function(Value)
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/ScpGuest666/Random-Roblox-script/refs/heads/main/Roblox%20Fe%20Vehicle%20Fly%20GUI%20script'))()
+   end,
+})
+
+local Button = BlueTab:CreateButton({
+   Name = "Vfly XX Old",
+   Callback = function(Value)
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/TheBlue5/Fe-Vehicle-Fly-GUI-script/refs/heads/main/Vfly'))()
+   end,
+})
+
+local Button = BlueTab:CreateButton({
+   Name = "Vfly XZ",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/TheBlue5/VFLY-XZ/refs/heads/main/VFLY"))();
+   end,
+})
+
+local Button = BlueTab:CreateButton({
+   Name = "Vfly V4",
+   Callback = function(Value)
+   loadstring(game:HttpGet(('https://pastebin.com/raw/ZgKQ0TEA'),true))()
+   end,
+})
+
+local Button = BlueTab:CreateButton({
+   Name = "Fling speed 🥏",
+   Callback = function(Value)
+   loadstring(game:HttpGet('https://pastebin.com/raw/r97d7dS0', true))()
+   end,
+})
+
+local Button = BlueTab:CreateButton({
+   Name = "🐎🐎🐎",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/9menta/Archives/refs/heads/main/ElixirClient.lua",true))();
+   end,
+})
+
+local Button = BlueTab:CreateButton({
+   Name = "🐎🪙",
+   Callback = function(Value)
+   loadstring(game:HttpGet("https://pastebin.com/raw/WiL3fChb"))()
+   end,
+})
+
+
+
 -- Rox
 
 local Button = RoxTab:CreateButton({
@@ -229,21 +327,9 @@ local Button = RoxTab:CreateButton({
    end,
 })
 
-local Button = RoxTab:CreateButton({
-   Name = "Save Server",
-   Callback = function(Value)
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/GhostPlayer352/Test4/refs/heads/main/ScriptAuthorization%20Source"))()Ioad("6abc8c09bf8fdf096f4a1ed90ba1867b"))()
-   end,
-})
 
-local Button = RoxTab:CreateButton({
-   Name = "Freecam",
-   Callback = function(Value)
-   loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Freecam'))()
-   end,
-})
 
--- Rex Tab
+-- Rex
 
 local Button = RexTab:CreateButton({
    Name = "✅",
@@ -357,23 +443,11 @@ local Button = RexTab:CreateButton({
    end,
 })
 
-local Button = RexTab:CreateButton({
-   Name = "Save Server",
-   Callback = function(Value)
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/GhostPlayer352/Test4/refs/heads/main/ScriptAuthorization%20Source"))()Ioad("6abc8c09bf8fdf096f4a1ed90ba1867b"))()
-   end,
-})
 
-local Button = RexTab:CreateButton({
-   Name = "Freecam",
-   Callback = function(Value)
-   loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Freecam'))()
-   end,
-})
 
 -- key
 
-local Keybind = RoxTab:CreateKeybind({
+local Keybind = BlueTab:CreateKeybind({
    Name = "Keybind Example",
    CurrentKeybind = "K", -- Changed to K
    HoldToInteract = false,
