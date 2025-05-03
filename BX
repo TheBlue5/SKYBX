@@ -96,8 +96,6 @@ local RexTab = Window:CreateTab("🧙‍♂️", 4483362458) -- Title, Image
 
 
 -- Buttons
--- Blue
-
 -- Rox
 
 local Button = RoxTab:CreateButton({
