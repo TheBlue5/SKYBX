@@ -96,6 +96,15 @@ local RexTab = Window:CreateTab("🧙‍♂️", 4483362458) -- Title, Image
 
 
 -- Buttons
+-- Blue
+
+local Button = RexTab:CreateButton({
+   Name = "Freecam",
+   Callback = function(Value)
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Freecam'))()
+   end,
+})
+
 -- Rox
 
 local Button = RoxTab:CreateButton({
