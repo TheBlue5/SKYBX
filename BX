@@ -397,7 +397,7 @@ local Button = RexTab:CreateButton({
 local Button = RexTab:CreateButton({
    Name = "mm2👁️",
    Callback = function(Value)
-   loadstring(game:HttpGet(('https://pastebin.com/raw/CMN1fPhw'),true))()
+   loadstring(game:HttpGet(('https://raw.githubusercontent.com/TheBlue5/Mm2-ESP/refs/heads/main/Mm2%20ESP),true))()
    end,
 })
 
